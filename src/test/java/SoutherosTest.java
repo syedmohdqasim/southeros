@@ -27,7 +27,7 @@ public class SoutherosTest {
     }
 
     @Test
-    public void processMessageShouldAddkingdomToAlliesIfTheyContainSecretCode() {
+    public void processMessageShouldAddkingdomToAlliesIfTheyContainSecretCode() throws NoSuchKingdomException {
         String secretMessage = "secretMessage";
         when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
         String airKingdom = "air";
@@ -36,7 +36,7 @@ public class SoutherosTest {
     }
 
     @Test
-    public void shouldNotAddTheKingdomToAlliesItDoesNotHaveSecretMessage() {
+    public void shouldNotAddTheKingdomToAlliesItDoesNotHaveSecretMessage() throws NoSuchKingdomException {
         String secretMessage = "secretMessage";
         when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(false);
         String airKingdom = "air";
@@ -45,7 +45,7 @@ public class SoutherosTest {
     }
 
     @Test
-    public void southerosShouldMakeKingShanRulerIfMoreThan2KingdomsGiveAllegianceToHim() {
+    public void southerosShouldMakeKingShanRulerIfMoreThan2KingdomsGiveAllegianceToHim() throws NoSuchKingdomException {
         String airKingdomName = "air";
         String fireKingdomName = "fire";
         String iceKingdomName = "ice";
@@ -58,11 +58,11 @@ public class SoutherosTest {
         southeros.processMessagesForKingdomFromKingShan(fireKingdomName, secretMessage);
         southeros.processMessagesForKingdomFromKingShan(iceKingdomName, secretMessage);
 
-        assertEquals(southeros.getKing(),"King Shan");
+        assertEquals(southeros.getKing(), "King Shan");
     }
 
     @Test
-    public void southerosShouldNotMakeKingShanRulerIflessThan3KingdomsGiveAllegianceToHim() {
+    public void southerosShouldNotMakeKingShanRulerIflessThan3KingdomsGiveAllegianceToHim() throws NoSuchKingdomException {
         String airKingdomName = "air";
         String fireKingdomName = "fire";
         String iceKingdomName = "ice";
@@ -75,8 +75,18 @@ public class SoutherosTest {
         southeros.processMessagesForKingdomFromKingShan(fireKingdomName, secretMessage);
         southeros.processMessagesForKingdomFromKingShan(iceKingdomName, secretMessage);
 
-        assertNotEquals(southeros.getKing(),"King Shan");
+        assertNotEquals(southeros.getKing(), "King Shan");
     }
+
+    @Test(expected = NoSuchKingdomException.class)
+    public void processMessageShouldThrowExceptionIfNoSuchKingdomExists() throws NoSuchKingdomException {
+        String secretMessage = "secretMessage";
+        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
+        String airKingdom = "airo";
+        southeros.processMessagesForKingdomFromKingShan(airKingdom, secretMessage);
+        assertTrue(southeros.getAlliesOfRuler().contains(this.airKingdom));
+    }
+
 
     private HashMap<String, Kingdom> initializeKingdoms() {
         HashMap<String, Kingdom> kingdoms = new HashMap<String, Kingdom>();

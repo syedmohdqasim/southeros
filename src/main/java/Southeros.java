@@ -23,9 +23,13 @@ class Southeros {
         return alliesOfRuler;
     }
 
-    void processMessagesForKingdomFromKingShan(String kingdomName, String message) {
-        if (kingdoms.get(kingdomName.toLowerCase()).shouldGiveAllegianceToShan(message)) {
-            alliesOfRuler.add(kingdoms.get(kingdomName.toLowerCase()));
+    void processMessagesForKingdomFromKingShan(String kingdomName, String message) throws NoSuchKingdomException {
+        Kingdom kingdom = kingdoms.get(kingdomName.toLowerCase());
+        if(kingdom==null){
+            throw new NoSuchKingdomException("No Such Kindom Exists Please Try Again!!!");
+        }
+        if (kingdom.shouldGiveAllegianceToShan(message)) {
+            alliesOfRuler.add(kingdom);
         }
         if(alliesOfRuler.size()>=3){
             king = "King Shan";
