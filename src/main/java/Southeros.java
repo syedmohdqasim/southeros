@@ -24,4 +24,8 @@ public class Southeros {
         kingdoms.add(new Kingdom("Air", "Owl"));
     }
 
+    public String getKing() {
+        return king;
+    }
+
 }
