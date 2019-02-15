@@ -1,18 +1,18 @@
 //Represents a main.java.Kingdom in universe of Southeros
 public class Kingdom {
     private String name;
-    private String animal;
+    private String emblem;
 
-    public Kingdom(String name, String animal) {
+    public Kingdom(String name, String emblem) {
         this.name = name;
-        this.animal = animal;
+        this.emblem = emblem;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAnimal() {
-        return animal;
+    public String getEmblem() {
+        return emblem;
     }
 }

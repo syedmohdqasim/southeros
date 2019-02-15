@@ -20,7 +20,7 @@ public class KingdomTest {
     }
 
     @Test
-    public void shouldReturnCorrectNameOfAnimal() {
-        assertEquals(kingdomOne.getAnimal(), animalOne);
+    public void shouldReturnCorrectNameOfEmblem() {
+        assertEquals(kingdomOne.getEmblem(), animalOne);
     }
 }
