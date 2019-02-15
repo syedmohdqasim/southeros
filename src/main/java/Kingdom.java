@@ -15,4 +15,8 @@ public class Kingdom {
     public String getEmblem() {
         return emblem;
     }
+
+    public boolean shouldGiveAllegianceToShan(String message) {
+        return false;
+    }
 }
