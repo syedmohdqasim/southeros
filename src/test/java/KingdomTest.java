@@ -23,4 +23,34 @@ public class KingdomTest {
     public void shouldReturnCorrectNameOfEmblem() {
         assertEquals(kingdomOne.getEmblem(), animalOne);
     }
+
+    @Test
+    public void shouldGiveAllegianceWhenMessageStringContainsEmblem() {
+        assertTrue(kingdomOne.shouldGiveAllegianceToShan("animalOne"));
+    }
+
+    @Test
+    public void shouldNotGiveAllegianceWhenMessageStringContainsEmblem() {
+        assertFalse(kingdomOne.shouldGiveAllegianceToShan("aimalOne"));
+    }
+
+    @Test
+    public void containsAllLettersOfEmblemShouldCheckForDoubleLetters() {
+        assertTrue(kingdomOne.shouldGiveAllegianceToShan("annimalOe"));
+    }
+
+    @Test
+    public void containsAllLettersOfEmblemShouldCheckForAllLetters() {
+        assertFalse(kingdomOne.shouldGiveAllegianceToShan("annimalO"));
+    }
+
+    @Test
+    public void containsAllLettersOfEmblemShouldShouldIgnoreCapitalizationLetters() {
+        assertTrue(kingdomOne.shouldGiveAllegianceToShan("annimaLOe"));
+    }
+
+    @Test
+    public void containsAllLettersOfEmblemShouldShouldIgnoreSpecialLiterals() {
+        assertTrue(kingdomOne.shouldGiveAllegianceToShan("annim a`L! Oe"));
+    }
 }

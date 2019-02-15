@@ -1,22 +1,35 @@
 //Represents a main.java.Kingdom in universe of Southeros
-public class Kingdom {
+class Kingdom {
     private String name;
     private String emblem;
 
-    public Kingdom(String name, String emblem) {
+    Kingdom(String name, String emblem) {
         this.name = name;
         this.emblem = emblem;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public String getEmblem() {
+    String getEmblem() {
         return emblem;
     }
 
-    public boolean shouldGiveAllegianceToShan(String message) {
-        return false;
+    boolean shouldGiveAllegianceToShan(String message) {
+        return containsAllLettersOfEmblem(message);
+    }
+
+    private boolean containsAllLettersOfEmblem(String message) {
+        message = message.toLowerCase();
+        for (char letter : emblem.toLowerCase().toCharArray()) {
+            String character = String.valueOf(letter);
+            if (message.contains(character)) {
+                message = message.replaceFirst(character, "");
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }
