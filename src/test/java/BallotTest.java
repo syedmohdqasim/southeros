@@ -10,7 +10,7 @@ public class BallotTest {
     private BallotMessage ballotMessage;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         ballotMessage = mock(BallotMessage.class);
         ballot = new Ballot();
     }
@@ -22,5 +22,13 @@ public class BallotTest {
         BallotMessage ballotMessage2 = mock(BallotMessage.class);
         ballot.addBallotMessage(ballotMessage2);
         assertEquals(ballotMessage2, ballot.getBallotMessage(1));
+    }
+
+    @Test
+    public void getBallotSizeShouldReturnCorrectSize() {
+        ballot.addBallotMessage(ballotMessage);
+        assertEquals(Integer.valueOf(1),ballot.getBallotSize());
+        ballot.addBallotMessage(ballotMessage);
+        assertEquals(Integer.valueOf(2),ballot.getBallotSize());
     }
 }

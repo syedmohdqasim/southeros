@@ -17,4 +17,8 @@ class Ballot {
     void addBallotMessage(BallotMessage ballotMessage) {
         this.ballotMessages.add(ballotMessage);
     }
+
+    Integer getBallotSize() {
+        return ballotMessages.size();
+    }
 }
