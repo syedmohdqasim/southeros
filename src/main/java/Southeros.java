@@ -11,7 +11,7 @@ class Southeros {
 
     Southeros(HashMap<String, Kingdom> kingdoms) {
         king = "None";
-        alliesOfRuler = new ArrayList<Kingdom>();
+        alliesOfRuler = new ArrayList<>();
         this.kingdoms = kingdoms;
     }
 
@@ -28,7 +28,7 @@ class Southeros {
         if(kingdom==null){
             throw new NoSuchKingdomException("No Such Kindom Exists Please Try Again!!!");
         }
-        if (kingdom.shouldGiveAllegianceToShan(message)) {
+        if (kingdom.shouldGiveAllegiance(message)) {
             alliesOfRuler.add(kingdom);
         }
         if(alliesOfRuler.size()>=3){

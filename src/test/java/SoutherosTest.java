@@ -29,7 +29,7 @@ public class SoutherosTest {
     @Test
     public void processMessageShouldAddkingdomToAlliesIfTheyContainSecretCode() throws NoSuchKingdomException {
         String secretMessage = "secretMessage";
-        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
+        when(airKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
         String airKingdom = "air";
         southeros.processMessagesForKingdomFromKingShan(airKingdom, secretMessage);
         assertTrue(southeros.getAlliesOfRuler().contains(this.airKingdom));
@@ -38,7 +38,7 @@ public class SoutherosTest {
     @Test
     public void shouldNotAddTheKingdomToAlliesItDoesNotHaveSecretMessage() throws NoSuchKingdomException {
         String secretMessage = "secretMessage";
-        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(false);
+        when(airKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(false);
         String airKingdom = "air";
         southeros.processMessagesForKingdomFromKingShan(airKingdom, secretMessage);
         assertFalse(southeros.getAlliesOfRuler().contains(this.airKingdom));
@@ -50,9 +50,9 @@ public class SoutherosTest {
         String fireKingdomName = "fire";
         String iceKingdomName = "ice";
         String secretMessage = "secretMessage";
-        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
-        when(fireKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
-        when(iceKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
+        when(airKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
+        when(fireKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
+        when(iceKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
 
         southeros.processMessagesForKingdomFromKingShan(airKingdomName, secretMessage);
         southeros.processMessagesForKingdomFromKingShan(fireKingdomName, secretMessage);
@@ -67,9 +67,9 @@ public class SoutherosTest {
         String fireKingdomName = "fire";
         String iceKingdomName = "ice";
         String secretMessage = "secretMessage";
-        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
-        when(fireKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
-        when(iceKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(false);
+        when(airKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
+        when(fireKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
+        when(iceKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(false);
 
         southeros.processMessagesForKingdomFromKingShan(airKingdomName, secretMessage);
         southeros.processMessagesForKingdomFromKingShan(fireKingdomName, secretMessage);
@@ -81,7 +81,7 @@ public class SoutherosTest {
     @Test(expected = NoSuchKingdomException.class)
     public void processMessageShouldThrowExceptionIfNoSuchKingdomExists() throws NoSuchKingdomException {
         String secretMessage = "secretMessage";
-        when(airKingdom.shouldGiveAllegianceToShan(secretMessage)).thenReturn(true);
+        when(airKingdom.shouldGiveAllegiance(secretMessage)).thenReturn(true);
         String airKingdom = "airo";
         southeros.processMessagesForKingdomFromKingShan(airKingdom, secretMessage);
         assertTrue(southeros.getAlliesOfRuler().contains(this.airKingdom));

@@ -16,7 +16,7 @@ class Kingdom {
         return emblem;
     }
 
-    boolean shouldGiveAllegianceToShan(String message) {
+    boolean shouldGiveAllegiance(String message) {
         return containsAllLettersOfEmblem(message);
     }
 
