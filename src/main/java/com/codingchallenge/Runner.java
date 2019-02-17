@@ -72,7 +72,7 @@ public class Runner {
             throw new WrongInputFormatException("Wrong Input Format, Please type kingdom names seperated by space");
         }
         for (String kingdomName : kingdomNames) {
-            Kingdom kingdom = kingdoms.get(kingdomName);
+            Kingdom kingdom = kingdoms.get(kingdomName.toLowerCase());
             if (kingdom == null) {
                 throw new NoSuchKingdomException("Please enter a correct Kingdom.");
             }
