@@ -46,4 +46,17 @@ public class CompetingKingdomTest {
     public void shouldNotGiveAllegianceToAnyone() {
         assertFalse(competingKingdom.shouldGiveAllegiance(competingKingdom.getEmblem()));
     }
+
+    @Test
+    public void clearAlliesShouldClearExistingAllies() {
+        Kingdom kingdom = mock(Kingdom.class);
+        competingKingdom.addAlly(kingdom);
+        competingKingdom.addAlly(ally);
+        List<Kingdom> actualAllies = competingKingdom.getAllies();
+        assertEquals(actualAllies.size(), 2);
+
+        competingKingdom.clearAllies();
+
+        assertEquals(0,competingKingdom.getAllies().size());
+    }
 }

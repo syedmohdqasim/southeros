@@ -23,4 +23,8 @@ class CompetingKingdom extends Kingdom {
     boolean shouldGiveAllegiance(String message) {
         return false;
     }
+
+    void clearAllies() {
+      allies.clear();
+    }
 }
