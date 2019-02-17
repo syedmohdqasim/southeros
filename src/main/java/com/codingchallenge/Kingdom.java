@@ -1,4 +1,6 @@
-//Represents a main.java.Kingdom in universe of Southeros
+package com.codingchallenge;
+
+//Represents a main.java.com.codingchallenge.Kingdom in universe of com.codingchallenge.Southeros
 class Kingdom {
     private String name;
     private String emblem;

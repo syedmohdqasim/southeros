@@ -1,3 +1,5 @@
+package com.codingchallenge;
+
 class BallotMessage {
     private Kingdom sender;
     private Kingdom receiver;

@@ -1,4 +1,4 @@
-//Represents an Ballot containing messages
+package com.codingchallenge;//Represents an com.codingchallenge.Ballot containing messages
 
 import java.io.File;
 import java.io.FileInputStream;

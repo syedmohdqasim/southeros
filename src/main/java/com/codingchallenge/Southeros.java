@@ -1,4 +1,4 @@
-//Represents the universe Southeros
+package com.codingchallenge;//Represents the universe com.codingchallenge.Southeros
 
 import java.util.ArrayList;
 import java.util.HashMap;

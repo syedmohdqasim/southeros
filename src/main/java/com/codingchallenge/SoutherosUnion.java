@@ -1,4 +1,4 @@
-//Represents the conglomerate kingdoms of Southeros.
+package com.codingchallenge;//Represents the conglomerate kingdoms of com.codingchallenge.Southeros.
 
 import java.io.IOException;
 import java.util.*;

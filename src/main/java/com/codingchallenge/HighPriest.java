@@ -1,4 +1,4 @@
-//Represents High Priest of Southeros
+package com.codingchallenge;//Represents High Priest of com.codingchallenge.Southeros
 
 import java.util.ArrayList;
 import java.util.List;

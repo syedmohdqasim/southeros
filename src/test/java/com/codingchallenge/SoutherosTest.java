@@ -1,10 +1,13 @@
+package com.codingchallenge;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class SoutherosTest {
 
@@ -86,7 +89,6 @@ public class SoutherosTest {
         southeros.processMessagesForKingdomFromKingShan(airKingdom, secretMessage);
         assertTrue(southeros.getAlliesOfRuler().contains(this.airKingdom));
     }
-
 
     private HashMap<String, Kingdom> initializeKingdoms() {
         HashMap<String, Kingdom> kingdoms = new HashMap<String, Kingdom>();

@@ -1,4 +1,4 @@
-//Represents A kingdom competing tto become the Ruler.
+package com.codingchallenge;//Represents A kingdom competing tto become the Ruler.
 import java.util.ArrayList;
 import java.util.List;
 
