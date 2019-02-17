@@ -38,6 +38,7 @@ public class Runner {
     private static void getInput(Southeros southeros, BufferedReader bufferedReader) throws IOException {
         String[] input = bufferedReader.readLine().split(",");
         try {
+            //todo check for argument 1 exists.
             southeros.processMessagesForKingdomFromKingShan(input[0], input[1]);
         } catch (NoSuchKingdomException e) {
             System.out.println(e.getMessage());
