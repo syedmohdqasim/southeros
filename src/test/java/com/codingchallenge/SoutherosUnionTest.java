@@ -42,12 +42,14 @@ public class SoutherosUnionTest {
     public void conductElectionsShouldGiveAWinnerAfterNTries() throws IOException {
 
         Optional<Kingdom> kingdom = southerosUnion.conductElections();
+        Integer round = 1;
         while (!kingdom.isPresent()) {
-            southerosUnion.printResultsAfterRound();
+            southerosUnion.printResultsAfterRound(round);
             southerosUnion.removeNonTiedCompetingKingdoms();
             kingdom = southerosUnion.conductElections();
+            round++;
         }
-        southerosUnion.printResultsAfterRound();
+        southerosUnion.printResultsAfterRound(round);
     }
 
     @Test
@@ -98,7 +100,7 @@ public class SoutherosUnionTest {
 
     @Test
     public void printResultsShouldBePrintedForAllCompetingKingdoms() {
-        southerosUnion.printResultsAfterRound();
+        southerosUnion.printResultsAfterRound(1);
         verify(spaceKingdomCompeting).getAllies();
         verify(spaceKingdomCompeting, times(2)).getName();
         verify(landKingdomCompeting).getAllies();

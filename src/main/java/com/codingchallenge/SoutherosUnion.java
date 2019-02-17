@@ -49,7 +49,8 @@ class SoutherosUnion {
         competingKingdoms.removeIf(competingKingdom -> competingKingdom.getAllies().size() < competingKingdoms.get(0).getAllies().size());
     }
 
-    void printResultsAfterRound() {
+    void printResultsAfterRound(Integer round) {
+        System.out.println("Results after round " + round.toString() + " ballot count.");
         for (CompetingKingdom competingKingdom : competingKingdoms) {
             System.out.println("Allies for " + competingKingdom.getName() + ": " + competingKingdom.getAllies().size());
         }

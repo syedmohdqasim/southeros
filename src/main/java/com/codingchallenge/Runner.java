@@ -3,13 +3,16 @@ package com.codingchallenge;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.System.exit;
 
 public class Runner {
-    static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static HashMap<String, Kingdom> kingdoms;
 
 
     public static void main(String[] args) throws IOException {
@@ -18,15 +21,64 @@ public class Runner {
             System.out.println("or command \"java -jar target/com.codingchallenge.Southeros-1.0.jar two\" to run sample problem two");
             exit(0);
         }
-        if (args[0].equals("one"))
-            RunSampleProblem1();
-        else if(args[0].equals("two"))
-            RunSampleProblem2();
-        else System.out.println("Please enter \"one\" or \"two\"");
+        switch (args[0]) {
+            case "one":
+                kingdoms = initialize();
+                RunSampleProblem1();
+                break;
+            case "two":
+                kingdoms = initialize();
+                RunSampleProblem2();
+                break;
+            default:
+                System.out.println("Please enter \"one\" or \"two\"");
+                break;
+        }
     }
 
-    private static void RunSampleProblem2() {
+    private static void RunSampleProblem2() throws IOException {
+        SoutherosUnion southerosUnion;
+        try {
+            southerosUnion = new SoutherosUnion(kingdoms, getCompetingKingdomsFromUser());
 
+            Optional<Kingdom> kingdom = southerosUnion.conductElections();
+            Integer round = 1;
+            while (!kingdom.isPresent()) {
+                southerosUnion.printResultsAfterRound(round);
+                southerosUnion.removeNonTiedCompetingKingdoms();
+                kingdom = southerosUnion.conductElections();
+                round++;
+            }
+            southerosUnion.printResultsAfterRound(round);
+
+            System.out.println("Who is the ruler of Southeros: ->" + kingdom.get().getName());
+            List<Kingdom> allies = ((CompetingKingdom) kingdom.get()).getAllies();
+            StringBuilder allAllies = new StringBuilder();
+            for (Kingdom ally : allies) {
+                allAllies.append(ally.getName()).append(" ");
+            }
+            System.out.println("Allies of Ruler: ->" + allAllies);
+        } catch (WrongInputFormatException | NoSuchKingdomException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static List<CompetingKingdom> getCompetingKingdomsFromUser() throws IOException, WrongInputFormatException, NoSuchKingdomException {
+        ArrayList<CompetingKingdom> competingKingdoms = new ArrayList<>();
+        System.out.println("Please Input the competing Kingdoms space seperated");
+        String s = bufferedReader.readLine();
+        String[] kingdomNames = s.split(" ");
+        if (kingdomNames.length < 1) {
+            throw new WrongInputFormatException("Wrong Input Format, Please type kingdom names seperated by space");
+        }
+        for (String kingdomName : kingdomNames) {
+            Kingdom kingdom = kingdoms.get(kingdomName);
+            if (kingdom == null) {
+                throw new NoSuchKingdomException("Please enter a correct Kingdom.");
+            }
+            competingKingdoms.add(new CompetingKingdom(kingdom.getName(), kingdom.getEmblem()));
+        }
+        return competingKingdoms;
     }
 
     private static void RunSampleProblem1() throws IOException {
@@ -59,7 +111,7 @@ public class Runner {
     private static void getInput(Southeros southeros, BufferedReader bufferedReader) throws IOException {
         String[] input = bufferedReader.readLine().split(",");
         try {
-            if(input.length<2){
+            if (input.length < 2) {
                 throw new WrongInputFormatException("Wrong Input Format Exception");
             }
             southeros.processMessagesForKingdomFromKingShan(input[0], input[1]);
@@ -85,7 +137,7 @@ public class Runner {
     }
 
     private static HashMap<String, Kingdom> initialize() {
-        HashMap<String, Kingdom> kingdoms = new HashMap<String, Kingdom>();
+        HashMap<String, Kingdom> kingdoms = new HashMap<>();
         kingdoms.put("space", new Kingdom("Space", "Gorilla"));
         kingdoms.put("land", new Kingdom("Land", "Panda"));
         kingdoms.put("water", new Kingdom("Water", "Octopus"));
