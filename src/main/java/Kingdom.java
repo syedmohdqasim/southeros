@@ -2,10 +2,12 @@
 class Kingdom {
     private String name;
     private String emblem;
+    private Boolean allegianceGiven;
 
     Kingdom(String name, String emblem) {
         this.name = name;
         this.emblem = emblem;
+        this.allegianceGiven = false;
     }
 
     String getName() {
@@ -17,7 +19,11 @@ class Kingdom {
     }
 
     boolean shouldGiveAllegiance(String message) {
-        return containsAllLettersOfEmblem(message);
+        if (containsAllLettersOfEmblem(message) && !allegianceGiven) {
+            allegianceGiven = true;
+            return true;
+        } else
+            return false;
     }
 
     private boolean containsAllLettersOfEmblem(String message) {

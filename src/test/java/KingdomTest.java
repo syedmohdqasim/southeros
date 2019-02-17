@@ -53,4 +53,10 @@ public class KingdomTest {
     public void containsAllLettersOfEmblemShouldShouldIgnoreSpecialLiterals() {
         assertTrue(kingdomOne.shouldGiveAllegiance("annim a`L! Oe"));
     }
+
+    @Test
+    public void shoulNotGiveAllegianceTwice() {
+        assertTrue(kingdomOne.shouldGiveAllegiance("annim a`L! Oe"));
+        assertFalse(kingdomOne.shouldGiveAllegiance("annim a`L! Oe"));
+    }
 }
