@@ -32,9 +32,9 @@ public class BallotTest {
     @Test
     public void getBallotSizeShouldReturnCorrectSize() {
         ballot.addBallotMessage(ballotMessage);
-        assertEquals(Integer.valueOf(1),ballot.getBallotSize());
+        assertEquals(Integer.valueOf(1), ballot.getBallotSize());
         ballot.addBallotMessage(ballotMessage);
-        assertEquals(Integer.valueOf(2),ballot.getBallotSize());
+        assertEquals(Integer.valueOf(2), ballot.getBallotSize());
     }
 
     @Test
@@ -51,11 +51,12 @@ public class BallotTest {
         when(competingKingdom2.getName()).thenReturn("kingdom4");
 
         HashMap<String, Kingdom> kingdomHashMap = new HashMap<>();
-        kingdomHashMap.put(kingdom.getName(),kingdom);
-        kingdomHashMap.put(kingdom2.getName(),kingdom2);
-        kingdomHashMap.put(competingKingdom1.getName(),competingKingdom1);
-        kingdomHashMap.put(competingKingdom2.getName(),competingKingdom2);
-        ballot.getMessagesFromContestingKingdoms(List.of(competingKingdom1,competingKingdom2),kingdomHashMap);
-        assertEquals(Integer.valueOf(150),ballot.getBallotSize());
+        kingdomHashMap.put(kingdom.getName(), kingdom);
+        kingdomHashMap.put(kingdom2.getName(), kingdom2);
+        kingdomHashMap.put(competingKingdom1.getName(), competingKingdom1);
+        kingdomHashMap.put(competingKingdom2.getName(), competingKingdom2);
+        assertEquals(Integer.valueOf(0), ballot.getBallotSize());
+        ballot.getMessagesFromContestingKingdoms(List.of(competingKingdom1, competingKingdom2), kingdomHashMap);
+        assertEquals(Integer.valueOf(150), ballot.getBallotSize());
     }
 }

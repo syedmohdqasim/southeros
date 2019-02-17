@@ -27,7 +27,8 @@ class Ballot {
     }
 
     void getMessagesFromContestingKingdoms(List<CompetingKingdom> contestingKingdoms, HashMap<String, Kingdom> memberKingdoms) throws IOException {
-         String messages[] = getMessagesFromSampleFile();
+        ballotMessages.clear();
+        String messages[] = getMessagesFromSampleFile();
         for (CompetingKingdom competingKingdom : contestingKingdoms) {
             for (Kingdom receivingKingdom : memberKingdoms.values()) {
                 if (!receivingKingdom.getName().equals(competingKingdom.getName())) {
