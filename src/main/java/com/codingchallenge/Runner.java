@@ -9,9 +9,28 @@ import java.util.List;
 import static java.lang.System.exit;
 
 public class Runner {
+    static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+
     public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.out.println("Please run with command \"java -jar target/com.codingchallenge.Southeros-1.0.jar one\" to run sample problem one");
+            System.out.println("or command \"java -jar target/com.codingchallenge.Southeros-1.0.jar two\" to run sample problem two");
+            exit(0);
+        }
+        if (args[0].equals("one"))
+            RunSampleProblem1();
+        else if(args[0].equals("two"))
+            RunSampleProblem2();
+        else System.out.println("Please enter \"one\" or \"two\"");
+    }
+
+    private static void RunSampleProblem2() {
+
+    }
+
+    private static void RunSampleProblem1() throws IOException {
         Southeros southeros = new Southeros(initialize());
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         char choice;
         while (true) {
             System.out.println("Please Enter the number infront of the choice to proceed:\n");
@@ -40,9 +59,11 @@ public class Runner {
     private static void getInput(Southeros southeros, BufferedReader bufferedReader) throws IOException {
         String[] input = bufferedReader.readLine().split(",");
         try {
-            //todo check for argument 1 exists.
+            if(input.length<2){
+                throw new WrongInputFormatException("Wrong Input Format Exception");
+            }
             southeros.processMessagesForKingdomFromKingShan(input[0], input[1]);
-        } catch (NoSuchKingdomException e) {
+        } catch (NoSuchKingdomException | WrongInputFormatException e) {
             System.out.println(e.getMessage());
         }
     }
